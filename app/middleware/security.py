@@ -19,6 +19,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         # Content security policy
         response.headers["Content-Security-Policy"] = "default-src 'self'"
         # Remove server fingerprint
-        response.headers.pop("server", None)
+        if "server" in response.headers:
+            del response.headers["server"]
 
         return response
