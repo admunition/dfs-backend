@@ -21,6 +21,13 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
     ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
 
+    # Supabase JWT
+    SUPABASE_JWT_SECRET: str = "your-supabase-jwt-secret"
+
+    # DataForSEO
+    DATAFORSEO_USERNAME: str = "your-dataforseo-username"
+    DATAFORSEO_PASSWORD: str = "your-dataforseo-password"
+
     # Rate limiting
     RATE_LIMIT_REQUESTS: int = 100   # max requests
     RATE_LIMIT_WINDOW: int = 60      # per X seconds
