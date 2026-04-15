@@ -1,0 +1,42 @@
+version: "3.9"
+
+# -------------------------------------------------------
+# LOCAL DEVELOPMENT ONLY
+# On Coolify (production), MongoDB is managed separately
+# -------------------------------------------------------
+
+services:
+  api:
+    build: .
+    container_name: fastapi_app
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    networks:
+      - app_network
+
+  mongo:
+    image: mongo:7
+    container_name: mongodb
+    restart: always
+    ports:
+      - "127.0.0.1:27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_DB_NAME}
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_network
+
+volumes:
+  mongo_data:
+
+networks:
+  app_network:
+    driver: bridge
