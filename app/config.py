@@ -21,8 +21,9 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
     ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
 
-    # Supabase JWT
-    SUPABASE_JWT_SECRET: str = "your-supabase-jwt-secret"
+    # Supabase
+    SUPABASE_URL: str = "https://your-project.supabase.co"
+    SUPABASE_ANON_KEY: str = "your-supabase-anon-key"
 
     # DataForSEO
     DATAFORSEO_USERNAME: str = "your-dataforseo-username"
